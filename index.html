@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Для Насти 💕</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #ff6eb4;
+      --pink-light: #ffd0e8;
+      --pink-dark: #e6408e;
+      --pink-glow: rgba(255, 110, 180, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Nunito', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    /* ══════════════════════════════
+       ANIMATED MESH GRADIENT BG
+    ══════════════════════════════ */
+    body {
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+      background-color: #07020f;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 10%, #5b1060 0%, transparent 60%),
+        radial-gradient(ellipse 70% 55% at 80% 20%, #3a0d5e 0%, transparent 55%),
+        radial-gradient(ellipse 75% 65% at 60% 60%, #6b1050 0%, transparent 60%),
+        radial-gradient(ellipse 65% 50% at 10% 75%, #2e0a4a 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 85% 80%, #4a0d58 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 50% 35%, #7a1060 0%, transparent 50%);
+      background-size: 200% 200%;
+      background-attachment: fixed;
+      animation: meshShift 14s ease-in-out infinite alternate;
+    }
+
+    #meshCanvas {
+      display: none;
+    }
+
+    @keyframes meshShift {
+      0% {
+        background-position: 0% 0%, 100% 0%, 60% 60%, 0% 100%, 100% 100%, 50% 30%;
+      }
+
+      25% {
+        background-position: 30% 20%, 70% 30%, 80% 40%, 20% 80%, 80% 70%, 30% 60%;
+      }
+
+      50% {
+        background-position: 60% 10%, 40% 60%, 30% 80%, 50% 60%, 60% 40%, 70% 20%;
+      }
+
+      75% {
+        background-position: 20% 60%, 80% 10%, 50% 30%, 30% 90%, 90% 60%, 40% 80%;
+      }
+
+      100% {
+        background-position: 50% 80%, 20% 80%, 90% 70%, 70% 20%, 30% 20%, 80% 50%;
+      }
+    }
+
+    /* Subtle grain on top of mesh */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #ffe4f3;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .04
+      }
+
+      50% {
+        opacity: .75
+      }
+    }
+
+    .app-shell {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    /* ─── PHONE ─── */
+    .phone {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 32px;
+      padding: 16px 12px 18px;
+      background: radial-gradient(circle at top, rgba(59, 20, 59, .92), rgba(20, 6, 28, .97) 55%, rgba(5, 0, 8, .98) 100%);
+      border: 1px solid rgba(255, 255, 255, .07);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 25px 80px rgba(0, 0, 0, .85), 0 0 60px rgba(255, 110, 180, .25);
+      position: relative;
+      backdrop-filter: blur(2px);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 40%, transparent 60%, rgba(255, 255, 255, .03));
+      opacity: .2;
+      pointer-events: none;
+    }
+
+    .phone-inner {
+      position: relative;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(48, 18, 63, .95), rgba(18, 5, 30, .97) 55%, rgba(5, 0, 8, .98) 100%);
+      padding: 14px 14px 16px;
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .6);
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: .65rem;
+      background: rgba(0, 0, 0, .4);
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .screen {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .screen.hidden {
+      display: none;
+    }
+
+    /* ─── LOCK ─── */
+    .lock-outer {
+      padding-top: 50px;
+      width: 100%;
+    }
+
+    .lock-case {
+      background: linear-gradient(155deg, rgba(43, 20, 64, .96), rgba(16, 5, 28, 1));
+      border-radius: 26px;
+      padding: 24px 20px 20px;
+      border: 1px solid rgba(255, 255, 255, .06);
+      box-shadow: 0 0 0 1px rgba(255, 110, 180, .18), 0 18px 50px rgba(0, 0, 0, .8), 0 0 40px rgba(255, 110, 180, .22);
+      position: relative;
+    }
+
+    .lock-case.unlocked {
+      box-shadow: 0 0 0 1px rgba(255, 110, 180, .4), 0 0 60px rgba(255, 110, 180, .7), 0 24px 70px rgba(0, 0, 0, .9);
+    }
+
+    .shackle-wrap {
+      position: absolute;
+      top: -46px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 60px;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 5;
+    }
+
+    .lock-label {
+      text-align: center;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      color: rgba(255, 208, 232, .6);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .drums-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .drum-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .drum-btn {
+      width: 44px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: rgba(255, 110, 180, .08);
+      border: 1px solid rgba(255, 110, 180, .22);
+      font-size: 13px;
+      color: var(--pink-light);
+      cursor: pointer;
+      transition: all .14s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .drum-btn:hover {
+      background: rgba(255, 110, 180, .2);
+    }
+
+    .drum-btn:active {
+      transform: scale(.9);
+    }
+
+    .drum-view {
+      width: 44px;
+      height: 62px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid var(--pink);
+      background: linear-gradient(180deg, #0b020e 0%, #21071e 45%, #21071e 55%, #08000c 100%);
+      box-shadow: 0 0 14px var(--pink-glow), inset 0 0 10px rgba(0, 0, 0, .7);
+      cursor: ns-resize;
+    }
+
+    .drum-view::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 28px;
+      border-top: 1px solid rgba(255, 110, 180, .6);
+      border-bottom: 1px solid rgba(255, 110, 180, .6);
+      background: rgba(255, 110, 180, .12);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .drum-view::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 0, 10, .9) 0%, transparent 32%, transparent 68%, rgba(5, 0, 10, .9) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .drum-tape {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .22s cubic-bezier(.34, 1.45, .64, 1);
+      z-index: 1;
+    }
+
+    .drum-cell {
+      width: 44px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 900;
+      color: rgba(255, 208, 232, .35);
+      flex-shrink: 0;
+      transition: color .18s, font-size .18s, text-shadow .18s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drum-cell.active {
+      font-size: 23px;
+      color: #fff;
+      text-shadow: 0 0 9px var(--pink), 0 0 24px rgba(255, 110, 180, .9);
+    }
+
+    .drum-sep {
+      width: 8px;
+      height: 62px;
+      position: relative;
+    }
+
+    .drum-sep::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 60%;
+      background: linear-gradient(180deg, transparent, rgba(255, 110, 180, .32), transparent);
+    }
+
+    .lock-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 13px;
+    }
+
+    .ldot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 110, 180, .18);
+      border: 1.5px solid rgba(255, 110, 180, .24);
+      transition: all .18s;
+    }
+
+    #lockStatus {
+      text-align: center;
+      font-size: .72rem;
+      margin-top: 9px;
+      color: rgba(255, 208, 232, .6);
+      min-height: 1.1rem;
+      transition: color .28s;
+    }
+
+    .btn-try {
+      margin-top: 16px;
+      background: rgba(255, 110, 180, .06);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 110, 180, .25);
+      padding: 10px 28px;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255, 208, 232, .85);
+      cursor: pointer;
+      transition: all .18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-try:hover {
+      background: rgba(255, 110, 180, .16);
+      box-shadow: 0 0 16px rgba(255, 110, 180, .5);
+    }
+
+    .btn-try:active {
+      transform: scale(.96);
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      20% {
+        transform: translateX(-7px)
+      }
+
+      40% {
+        transform: translateX(7px)
+      }
+
+      60% {
+        transform: translateX(-5px)
+      }
+
+      80% {
+        transform: translateX(4px)
+      }
+    }
+
+    .shake {
+      animation: shake .45s;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+      box-shadow: 0 4px 22px var(--pink-glow);
+      border: none;
+      border-radius: 18px;
+      padding: 13px 16px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      width: 100%;
+      cursor: pointer;
+      transition: all .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 34px rgba(255, 110, 180, .7);
+    }
+
+    .btn-yes:active {
+      transform: scale(.97);
+    }
+
+    .btn-no {
+      background: rgba(255, 110, 180, .08);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 110, 180, .25);
+      padding: 13px 16px;
+      color: rgba(255, 255, 255, .62);
+      font-size: 1rem;
+      font-weight: 700;
+      width: 100%;
+      cursor: pointer;
+      transition: all .18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-no:hover {
+      background: rgba(255, 110, 180, .16);
+    }
+
+    .float {
+      animation: fl 3s ease-in-out infinite;
+    }
+
+    .float-slow {
+      animation: fl 4.3s ease-in-out infinite;
+    }
+
+    @keyframes fl {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-11px)
+      }
+    }
+
+    .big-heart {
+      animation: hb 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes hb {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.18)
+      }
+    }
+
+    @keyframes hintPulse {
+
+      0%,
+      100% {
+        opacity: .4
+      }
+
+      50% {
+        opacity: .95
+      }
+    }
+
+    .hint-pulse {
+      animation: hintPulse 2.4s ease-in-out infinite;
+    }
+
+    /* ─── PAGER ─── */
+    .scenes-wrapper {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .scene-page {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4px 0 8px;
+      transition: transform .45s cubic-bezier(.4, 0, .2, 1), opacity .45s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .scene-page.current {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .scene-page.left {
+      transform: translateX(-110%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scene-page.right {
+      transform: translateX(110%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pager-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding: 0 4px;
+      gap: 8px;
+    }
+
+    .pager-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 110, 180, .22);
+      border: 1px solid rgba(255, 110, 180, .3);
+      transition: all .25s;
+      cursor: pointer;
+    }
+
+    .pdot.active {
+      width: 20px;
+      background: var(--pink);
+      border-color: var(--pink);
+      box-shadow: 0 0 8px var(--pink);
+    }
+
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 110, 180, .08);
+      border: 1px solid rgba(255, 110, 180, .22);
+      color: var(--pink-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .18s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 110, 180, .2);
+      box-shadow: 0 0 12px var(--pink-glow);
+    }
+
+    .nav-btn:active {
+      transform: scale(.9);
+    }
+
+    .nav-btn:disabled {
+      opacity: .25;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .scene-counter {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .35);
+      letter-spacing: .08em;
+    }
+
+    /* ─── RECEIPT ─── */
+    .receipt-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .receipt {
+      width: 100%;
+      max-width: 300px;
+      background: #fdf8f0;
+      color: #2a2017;
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .55);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"), linear-gradient(180deg, #fdf8f0 0%, #f9f3e8 100%);
+    }
+
+    .receipt::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 8px;
+      border-radius: 4px 4px 0 0;
+      background: repeating-linear-gradient(90deg, #ff8abf 0, #ff8abf 10px, #ffd0e8 10px, #ffd0e8 20px, #ffb3d9 20px, #ffb3d9 30px);
+    }
+
+    .receipt-bottom {
+      width: 100%;
+      max-width: 300px;
+      height: 14px;
+      background: radial-gradient(circle at 50% 0, transparent 7px, #fdf8f0 7px);
+      background-size: 14px 14px;
+      background-repeat: repeat-x;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .35));
+    }
+
+    .receipt-inner {
+      padding: 20px 14px 14px;
+    }
+
+    .r-logo {
+      text-align: center;
+      margin-bottom: 2px;
+    }
+
+    .r-logo-text {
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      color: #1a0f00;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .r-logo-sub {
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #a08060;
+    }
+
+    .r-divider {
+      border: none;
+      border-top: 1px dashed #c8b89a;
+      margin: 7px 0;
+    }
+
+    .r-meta {
+      font-size: .58rem;
+      color: #a08060;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .r-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 3px 0;
+      font-size: .66rem;
+    }
+
+    .r-name {
+      flex: 1;
+      color: #2a2017;
+    }
+
+    .r-qty {
+      font-size: .6rem;
+      color: #a08060;
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+
+    .r-price {
+      font-weight: 700;
+      color: #1a0f00;
+      white-space: nowrap;
+    }
+
+    .r-total-block {
+      margin-top: 7px;
+      border-top: 2px solid #c8b89a;
+      padding-top: 5px;
+    }
+
+    .r-total-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: .76rem;
+      font-weight: 700;
+      color: #1a0f00;
+    }
+
+    .r-payment {
+      font-size: .6rem;
+      color: #a08060;
+      margin-top: 3px;
+      text-align: right;
+    }
+
+    .r-footer {
+      text-align: center;
+      margin-top: 9px;
+      font-size: .58rem;
+      color: #c8b89a;
+      letter-spacing: .1em;
+    }
+
+    .r-hearts {
+      font-size: .85rem;
+      letter-spacing: .1em;
+    }
+
+    /* ─── PHOTO + TIMER SCENE ─── */
+    .photo-timer-frame {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .07);
+    }
+
+    .photo-timer-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Soft pink gradient vignette at bottom so timer text is readable */
+    .photo-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          transparent 30%,
+          rgba(10, 2, 18, .55) 70%,
+          rgba(10, 2, 18, .82) 100%);
+    }
+
+    /* Sticker pinned to bottom-right of frame */
+    .scene-sticker {
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      transform: rotate(14deg);
+      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .55));
+      animation: stickerBob2 3.4s ease-in-out infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    @keyframes stickerBob2 {
+
+      0%,
+      100% {
+        transform: rotate(14deg) translateY(0)
+      }
+
+      50% {
+        transform: rotate(14deg) translateY(-8px)
+      }
+    }
+
+    .timer-block {
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .timer-main {
+      font-size: 1rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .timer-sub {
+      font-size: .7rem;
+      color: rgba(255, 208, 232, .65);
+      margin-top: 3px;
+    }
+
+    .timer-date {
+      font-size: .62rem;
+      color: rgba(255, 255, 255, .3);
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════
+       PHOTO GALLERY — redesigned
+    ══════════════════════════════ */
+    .gallery-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Main viewer — fixed height, no overflow issues */
+    .gallery-viewer {
+      width: 100%;
+      height: 240px;
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #100618;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .07);
+      /* Keep width stable even if scrollbar appears elsewhere */
+      box-sizing: border-box;
+    }
+
+    /* Two image slots — crossfade between them */
+    .gallery-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity .35s ease;
+    }
+
+    .gallery-img.behind {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .gallery-img.front {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    /* Bottom gradient for dot visibility */
+    .gallery-viewer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(to bottom, transparent 50%, rgba(5, 0, 12, .65) 100%);
+      pointer-events: none;
+    }
+
+    /* Prev / Next arrow buttons overlaid on photo */
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 4;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, .15);
+      color: #fff;
+      font-size: .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .15s, opacity .15s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .gallery-arrow:hover {
+      background: rgba(255, 110, 180, .35);
+    }
+
+    .gallery-arrow:active {
+      transform: translateY(-50%) scale(.92);
+    }
+
+    .gallery-arrow.prev {
+      left: 8px;
+    }
+
+    .gallery-arrow.next {
+      right: 8px;
+    }
+
+    .gallery-arrow[disabled] {
+      opacity: .2;
+      pointer-events: none;
+    }
+
+    /* Counter top-right */
+    .gallery-counter {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      z-index: 4;
+      background: rgba(0, 0, 0, .5);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 20px;
+      padding: 3px 9px;
+      font-size: .6rem;
+      color: rgba(255, 255, 255, .85);
+      letter-spacing: .05em;
+    }
+
+    /* Dot navigation */
+    .gallery-dots {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      /* fixed height so layout never shifts */
+      height: 12px;
+    }
+
+    .gdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 110, 180, .25);
+      border: 1px solid rgba(255, 110, 180, .35);
+      cursor: pointer;
+      transition: all .22s;
+      flex-shrink: 0;
+    }
+
+    .gdot.active {
+      width: 18px;
+      background: var(--pink);
+      border-color: var(--pink);
+      box-shadow: 0 0 6px var(--pink);
+    }
+
+    /* Caption */
+    .gallery-caption {
+      text-align: center;
+      font-size: .7rem;
+      color: rgba(255, 208, 232, .55);
+    }
+
+    /* ─── INFINITE COUPONS ─── */
+    /* Page 4 scroll — hide scrollbar visually */
+    #page4 {
+      scrollbar-width: none;
+    }
+
+    #page4::-webkit-scrollbar {
+      display: none;
+    }
+
+    .coupon-wrap {
+      width: 92%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .coupon {
+      width: 100%;
+      background: #fdf8f0;
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      font-family: 'Courier New', monospace;
+      color: #2a2017;
+      box-shadow: 0 6px 28px rgba(0, 0, 0, .6);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, #fdf8f0 0%, #f9f3e8 100%);
+    }
+
+    .coupon::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 7px;
+      border-radius: 4px 4px 0 0;
+      background: repeating-linear-gradient(90deg, #ff8abf 0, #ff8abf 10px, #ffd0e8 10px, #ffd0e8 20px, #ffb3d9 20px, #ffb3d9 30px);
+    }
+
+    .coupon-inner {
+      padding: 18px 14px 14px;
+    }
+
+    .coupon-logo {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .coupon-logo-text {
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      color: #1a0f00;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .coupon-logo-sub {
+      font-size: .55rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #a08060;
+    }
+
+    .c-divider {
+      border: none;
+      border-top: 1px dashed #c8b89a;
+      margin: 6px 0;
+    }
+
+    .c-meta {
+      font-size: .56rem;
+      color: #a08060;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .c-body {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 6px;
+    }
+
+    .c-sticker {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    .c-text {
+      flex: 1;
+    }
+
+    .c-title {
+      font-size: .78rem;
+      font-weight: 700;
+      color: #1a0f00;
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .c-desc {
+      font-size: .62rem;
+      color: #7a6040;
+      line-height: 1.5;
+    }
+
+    .c-footer {
+      text-align: center;
+      margin-top: 8px;
+      font-size: .56rem;
+      color: #c8b89a;
+      letter-spacing: .08em;
+    }
+
+    .c-hearts {
+      font-size: .8rem;
+    }
+
+    /* jagged bottom */
+    .coupon-tear {
+      width: 100%;
+      height: 12px;
+      background: radial-gradient(circle at 50% 0, transparent 6px, #fdf8f0 6px);
+      background-size: 12px 12px;
+      background-repeat: repeat-x;
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .4));
+      margin-bottom: 4px;
+    }
+
+    /* ─── HEART RAIN ─── */
+    .heart-rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart-p {
+      position: absolute;
+      top: -40px;
+      animation: fallH linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes fallH {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: .9
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg) scale(.6);
+        opacity: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+  <div class="heart-rain" id="heartRain"></div>
+
+  <div class="app-shell">
+    <div class="phone">
+      <div class="phone-inner">
+
+        <div class="status">
+          <span class="pill">Только для тебя</span>
+          <span style="font-size:.68rem;color:rgba(255,255,255,.5)">Настя 💕</span>
+        </div>
+
+        <!-- ══ LOCK ══ -->
+        <div class="screen" id="screenLock">
+          <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;">
+            <div class="text-center">
+              <p class="hint-pulse"
+                style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,208,232,.7)">
+                Секретный замочек</p>
+              <p style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:4px">Крути цифры и нажми «Попробовать»
+              </p>
+            </div>
+            <div class="lock-outer">
+              <div class="lock-case" id="lockCase">
+                <div class="shackle-wrap">
+                  <svg width="90" height="60" viewBox="0 0 90 60" fill="none" style="overflow:visible">
+                    <defs>
+                      <filter id="sg" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="3" result="b" />
+                        <feMerge>
+                          <feMergeNode in="b" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    <path id="shacklePath" d="M22 60 L22 30 Q22 8 45 8 Q68 8 68 30 L68 60" stroke="#ff6eb4"
+                      stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#sg)" />
+                  </svg>
+                </div>
+                <div class="lock-label">COMBINATION LOVE LOCK</div>
+                <div class="drums-row" id="drumsRow"></div>
+                <div class="lock-dots">
+                  <div class="ldot" id="ld0"></div>
+                  <div class="ldot" id="ld1"></div>
+                  <div class="ldot" id="ld2"></div>
+                  <div class="ldot" id="ld3"></div>
+                </div>
+                <div id="lockStatus">Подбери 4 цифры, чтобы открыть</div>
+              </div>
+            </div>
+            <button class="btn-try" onclick="tryCode()">Попробовать 🔓</button>
+          </div>
+        </div>
+
+        <!-- ══ CONFIRM ══ -->
+        <div class="screen hidden" id="screenConfirm">
+          <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;padding:16px 0;">
+            <div class="float" style="font-size:3.5rem">🔓</div>
+            <div class="text-center">
+              <h2 style="font-size:1.1rem;font-weight:800;line-height:1.35">Ты уверена, что хочешь открыть?</h2>
+              <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:6px">Там маленькая презентация про нас 💕
+              </p>
+            </div>
+            <div style="width:100%;display:flex;flex-direction:column;gap:10px;">
+              <button class="btn-yes" onclick="goToScenes()">Да, хочу посмотреть</button>
+              <button class="btn-no" onclick="goToBack()">Нет, я стесняюсь 😳</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ BACK ══ -->
+        <div class="screen hidden" id="screenBack">
+          <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;padding:16px 0;">
+            <div class="float-slow" style="font-size:4rem">🥺</div>
+            <div class="text-center">
+              <h2 style="font-size:1.1rem;font-weight:800">Подожди, пожалуйста,</h2>
+              <p style="font-size:.8rem;color:rgba(255,208,232,.8);margin-top:6px">я очень старался над этим для тебя 💖
+              </p>
+            </div>
+            <button class="btn-yes" onclick="goToConfirm()">Ладно, давай посмотрим</button>
+          </div>
+        </div>
+
+        <!-- ══ SCENES ══ -->
+        <div class="screen hidden" id="screenScenes">
+          <div class="scenes-wrapper" id="scenesWrapper">
+
+            <!-- PAGE 0: TITLE -->
+            <div class="scene-page current" id="page0">
+              <div
+                style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:20px 0 10px;">
+                <div class="big-heart" style="font-size:4rem">❤️</div>
+                <div>
+                  <h1 style="font-size:1.6rem;font-weight:900;line-height:1.2">Люблю тебя, Настя</h1>
+                  <p style="font-size:.8rem;color:rgba(255,208,232,.85);margin-top:6px">и у меня для тебя<br />маленькая
+                    презентация</p>
+                </div>
+                <p style="font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.06em">листай вперёд →</p>
+              </div>
+            </div>
+
+            <!-- PAGE 1: RECEIPT -->
+            <div class="scene-page right" id="page1">
+              <div style="display:flex;flex-direction:column;align-items:center;width:100%;gap:0;">
+                <div class="receipt-wrap">
+                  <div class="receipt">
+                    <div class="receipt-inner">
+                      <div class="r-logo">
+                        <div class="r-logo-text">Love Market</div>
+                        <div class="r-logo-sub">Магазин настоящих чувств</div>
+                      </div>
+                      <hr class="r-divider" />
+                      <div class="r-meta"><span>27.09.2025 &nbsp; Белая Церковь</span><span>Чек № 0927</span></div>
+                      <div class="r-meta" style="margin-bottom:6px;"><span>Покупатель: Настя</span><span>Касса:
+                          Сердце</span></div>
+                      <hr class="r-divider" />
+                      <div class="r-line"><span class="r-name">Улыбки</span><span class="r-qty">× ∞</span><span
+                          class="r-price">0₴</span></div>
+                      <div class="r-line"><span class="r-name">Объятия</span><span class="r-qty">× каждый
+                          день</span><span class="r-price">0₴</span></div>
+                      <div class="r-line"><span class="r-name">Поддержка</span><span class="r-qty">× 24/7</span><span
+                          class="r-price">0₴</span></div>
+                      <div class="r-line"><span class="r-name">Глупые шутки</span><span class="r-qty">× пока не
+                          улыбнёшься</span><span class="r-price">0₴</span></div>
+                      <div class="r-line"><span class="r-name">Тепло рядом</span><span class="r-qty">×
+                          всегда</span><span class="r-price">0₴</span></div>
+                      <div class="r-total-block">
+                        <div class="r-total-line"><span>ИТОГО:</span><span>всё моё сердце</span></div>
+                        <div class="r-payment">Оплата: только взаимностью 💕</div>
+                      </div>
+                      <hr class="r-divider" style="margin-top:9px" />
+                      <div class="r-footer">
+                        <div class="r-hearts">💕 💖 💗 💓 💕</div>
+                        <div style="margin-top:3px">Спасибо, что ты есть</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="receipt-bottom" style="max-width:300px;width:100%;"></div>
+              </div>
+            </div>
+
+            <!-- PAGE 2: FLOATING HEARTS + TIMER -->
+            <div class="scene-page right" id="page2">
+              <div style="display:flex;flex-direction:column;align-items:center;width:100%;gap:10px;">
+
+                <!-- Photo with sticker overlay -->
+                <div class="photo-timer-frame">
+                  <img src="photo_2026-02-20_11-36-08.jpg" class="photo-timer-img" alt="наше фото" />
+                  <!-- pink vignette overlay -->
+                  <div class="photo-vignette"></div>
+                  <!-- sticker pinned bottom-right -->
+                  <img src="826968761.png" class="scene-sticker" alt="" />
+                </div>
+
+                <div class="timer-block">
+                  <div class="timer-main" id="timerMain">⏳ Считаю...</div>
+                  <div class="timer-sub" id="timerSub">С 27 сентября 2025 года</div>
+                  <div class="timer-date">каждый момент с тобой особенный 💗</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAGE 3: PHOTO GALLERY -->
+            <div class="scene-page right" id="page3">
+              <div class="gallery-wrap">
+
+                <div class="gallery-viewer" id="galleryViewer">
+                  <!-- Two image slots for crossfade — JS fills src -->
+                  <img class="gallery-img behind" id="gImgBehind" src="" alt="" />
+                  <img class="gallery-img front" id="gImgFront" src="" alt="" />
+
+                  <!-- Overlaid controls (z-index above ::after gradient) -->
+                  <button class="gallery-arrow prev" id="gPrev" onclick="galleryStep(-1)">&#8249;</button>
+                  <button class="gallery-arrow next" id="gNext" onclick="galleryStep(+1)">&#8250;</button>
+                  <div class="gallery-counter" id="gCounter">1 / 8</div>
+                </div>
+
+                <!-- Dot strip — fixed height, never causes reflow -->
+                <div class="gallery-dots" id="gDots"></div>
+
+                <div class="gallery-caption">наши фото 📸 · свайп или стрелки</div>
+              </div>
+            </div>
+
+            <!-- PAGE 4: INFINITE COUPONS -->
+            <div class="scene-page right" id="page4"
+              style="justify-content:flex-start;overflow-y:auto;overflow-x:hidden;padding:0;">
+              <div id="couponsScroll"
+                style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0 16px;">
+                <!-- coupons injected by JS -->
+              </div>
+            </div>
+
+            <!-- PAGE 4: FINALE -->
+            <div class="scene-page right" id="page5">
+              <div
+                style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;padding:6px 4px;">
+                <div style="font-size:1.8rem;margin-bottom:10px;">🤍</div>
+                <div style="max-width:290px;display:flex;flex-direction:column;gap:0;">
+                  <p style="font-size:.82rem;color:rgba(255,208,232,.95);line-height:1.6;font-weight:700;">
+                    Настя, я люблю тебя.<br />
+                    Не «наверное», не «посмотрим» —<br />
+                    просто люблю, и всё.
+                  </p>
+                  <div style="width:36px;height:1px;background:rgba(255,110,180,.35);margin:10px auto;"></div>
+                  <p style="font-size:.72rem;color:rgba(255,208,232,.7);line-height:1.7;">
+                    Я никуда не уйду.<br />
+                    Я выбрал тебя — осознанно,<br />
+                    без сомнений, без «но».<br />
+                    Больше без пауз и перерывов.<br /><br />
+                    Хочу быть рядом — даже на расстоянии,<br />
+                    даже когда всё не очень,<br />
+                    даже когда всё хорошо.<br />
+                    В глупых и серьёзных моментах,<br />
+                    во все дни — и плохие, и хорошие.
+                  </p>
+                  <div style="width:36px;height:1px;background:rgba(255,110,180,.35);margin:10px auto;"></div>
+                  <p style="font-size:.84rem;font-weight:900;color:#fff;letter-spacing:.02em;">
+                    Очень сильно люблю тебя. 💕
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /scenes-wrapper -->
+
+          <div class="pager-bar">
+            <button class="nav-btn" id="btnPrev" onclick="changePage(-1)" disabled>◀</button>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+              <div class="pager-dots" id="pagerDots"></div>
+              <span class="scene-counter" id="sceneCounter">1 / 5</span>
+            </div>
+            <button class="nav-btn" id="btnNext" onclick="changePage(+1)">▶</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Mesh gradient is pure CSS — see body { background-image / animation } in <style> */
+
+    /* ══════════════════════════════
+       STARS
+    ══════════════════════════════ */
+    const starsEl = document.getElementById("stars");
+    for (let i = 0; i < 100; i++) {
+      const s = document.createElement("div"); s.className = "star";
+      const sz = Math.random() * 1.8 + .3;
+      s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-duration:${2 + Math.random() * 5}s;animation-delay:${Math.random() * 6}s;`;
+      starsEl.appendChild(s);
+    }
+
+    /* ══════════════════════════════
+       HEART RAIN
+    ══════════════════════════════ */
+    function startHeartRain() {
+      const rain = document.getElementById("heartRain"); rain.innerHTML = "";
+      const set = ["💕", "💖", "💗", "💓", "✨", "🌸", "💝", "🩷"];
+      for (let i = 0; i < 20; i++) {
+        const h = document.createElement("div"); h.className = "heart-p";
+        h.textContent = set[Math.floor(Math.random() * set.length)];
+        h.style.cssText = `left:${Math.random() * 100}%;font-size:${.9 + Math.random() * 1.1}rem;animation-duration:${4 + Math.random() * 5}s;animation-delay:${Math.random() * 8}s;`;
+        rain.appendChild(h);
+      }
+    }
+
+    /* ══════════════════════════════
+       SCREEN SWITCH
+    ══════════════════════════════ */
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function goToConfirm() { showScreen('screenConfirm'); }
+    function goToBack() { showScreen('screenBack'); }
+    function goToScenes() {
+      showScreen('screenScenes');
+      startHeartRain();
+      buildPagerDots();
+      updatePager();
+      initGallery();
+    }
+
+    /* ══════════════════════════════
+       PAGER
+    ══════════════════════════════ */
+    const TOTAL_PAGES = 6;
+    let currentPage = 0;
+
+    function buildPagerDots() {
+      const c = document.getElementById('pagerDots'); c.innerHTML = '';
+      for (let i = 0; i < TOTAL_PAGES; i++) {
+        const d = document.createElement('div');
+        d.className = 'pdot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goToPage(i);
+        c.appendChild(d);
+      }
+    }
+    function updatePager() {
+      document.querySelectorAll('.pdot').forEach((d, i) => d.classList.toggle('active', i === currentPage));
+      document.getElementById('sceneCounter').textContent = `${currentPage + 1} / ${TOTAL_PAGES}`;
+      document.getElementById('btnPrev').disabled = currentPage === 0;
+      document.getElementById('btnNext').disabled = currentPage === TOTAL_PAGES - 1;
+    }
+    function changePage(dir) { goToPage(currentPage + dir); }
+
+    let isAnimating = false;
+    function goToPage(next) {
+      if (next === currentPage || isAnimating || next < 0 || next >= TOTAL_PAGES) return;
+      isAnimating = true;
+      const dir = next > currentPage ? 1 : -1;
+      const fromPage = document.getElementById('page' + currentPage);
+      const toPage = document.getElementById('page' + next);
+      toPage.className = 'scene-page ' + (dir > 0 ? 'right' : 'left');
+      toPage.getBoundingClientRect();
+      fromPage.className = 'scene-page ' + (dir > 0 ? 'left' : 'right');
+      toPage.className = 'scene-page current';
+      currentPage = next; updatePager();
+      if (next === 2) { startHeartRain(); startTimer(); }
+      if (next === 4) { initCoupons(); }
+      setTimeout(() => { isAnimating = false; }, 480);
+    }
+
+    // Swipe
+    let touchStartX = null;
+    document.getElementById('scenesWrapper').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.getElementById('scenesWrapper').addEventListener('touchend', e => {
+      if (touchStartX === null) return;
+      const dx = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) changePage(dx > 0 ? +1 : -1);
+      touchStartX = null;
+    }, { passive: true });
+
+    /* ══════════════════════════════
+       DRUM LOCK
+    ══════════════════════════════ */
+    const SECRET = "1908";
+    const vals = [0, 0, 0, 0]; const CELL_H = 28;
+    function buildDrums() {
+      const row = document.getElementById('drumsRow'); row.innerHTML = '';
+      for (let i = 0; i < 4; i++) {
+        if (i > 0) { const sep = document.createElement('div'); sep.className = 'drum-sep'; row.appendChild(sep); }
+        const unit = document.createElement('div'); unit.className = 'drum-unit';
+        const up = document.createElement('div'); up.className = 'drum-btn'; up.innerHTML = '▲'; up.addEventListener('click', () => spin(i, +1));
+        const view = document.createElement('div'); view.className = 'drum-view';
+        const tape = document.createElement('div'); tape.className = 'drum-tape'; tape.id = 'tape' + i;
+        for (let d = 0; d < 10; d++) { const cell = document.createElement('div'); cell.className = 'drum-cell'; cell.id = `dc${i}_${d}`; cell.textContent = d; tape.appendChild(cell); }
+        view.appendChild(tape);
+        let ty0 = null;
+        view.addEventListener('touchstart', e => { ty0 = e.touches[0].clientY; }, { passive: true });
+        view.addEventListener('touchmove', e => { if (ty0 === null) return; const dy = ty0 - e.touches[0].clientY; if (Math.abs(dy) > 18) { spin(i, dy > 0 ? +1 : -1); ty0 = e.touches[0].clientY; } }, { passive: true });
+        view.addEventListener('wheel', e => { e.preventDefault(); spin(i, e.deltaY > 0 ? +1 : -1); }, { passive: false });
+        const dn = document.createElement('div'); dn.className = 'drum-btn'; dn.innerHTML = '▼'; dn.addEventListener('click', () => spin(i, -1));
+        unit.append(up, view, dn); row.appendChild(unit);
+      }
+      vals.forEach((_, i) => renderDrum(i));
+    }
+    function renderDrum(i) {
+      const v = vals[i];
+      document.getElementById('tape' + i).style.transform = `translateY(${17 - v * CELL_H}px)`;
+      for (let d = 0; d < 10; d++) document.getElementById(`dc${i}_${d}`).classList.toggle('active', d === v);
+    }
+    function spin(i, dir) { vals[i] = (vals[i] + dir + 10) % 10; renderDrum(i); }
+    function updateDots(state) {
+      for (let i = 0; i < 4; i++) {
+        const d = document.getElementById('ld' + i);
+        if (state === 'wrong') { d.style.background = '#ef4444'; d.style.borderColor = '#ef4444'; d.style.boxShadow = '0 0 7px #ef4444'; }
+        else if (state === 'ok') { d.style.background = '#ff6eb4'; d.style.borderColor = '#ff6eb4'; d.style.boxShadow = '0 0 8px #ff6eb4'; }
+        else { d.style.background = ''; d.style.borderColor = ''; d.style.boxShadow = ''; }
+      }
+    }
+    function tryCode() {
+      const code = vals.join('');
+      if (code === SECRET) { doUnlock(); return; }
+      updateDots('wrong');
+      const lc = document.getElementById('lockCase');
+      lc.classList.add('shake'); lc.addEventListener('animationend', () => lc.classList.remove('shake'), { once: true });
+      const st = document.getElementById('lockStatus');
+      st.textContent = 'Неверный код 🥺 Попробуй ещё раз'; st.style.color = '#ef4444';
+      setTimeout(() => { updateDots(); st.textContent = 'Подбери 4 цифры, чтобы открыть'; st.style.color = ''; }, 1300);
+    }
+    function doUnlock() {
+      updateDots('ok');
+      document.getElementById('lockStatus').textContent = 'Открыто! 🎉';
+      document.getElementById('lockStatus').style.color = '#ff6eb4';
+      document.getElementById('lockCase').classList.add('unlocked');
+      const path = document.getElementById('shacklePath');
+      path.style.transition = 'all .55s cubic-bezier(.34,1.4,.64,1)';
+      path.setAttribute('stroke', '#fff');
+      path.setAttribute('d', 'M22 60 L22 30 Q22 8 45 8 Q68 8 68 8 L68 8');
+      setTimeout(() => { path.style.transition = 'all .4s cubic-bezier(.4,0,.2,1)'; path.setAttribute('d', 'M22 60 L22 30 Q22 8 45 8 Q68 8 68 -6 L68 -18'); }, 140);
+      setTimeout(() => { showScreen('screenConfirm'); }, 1000);
+    }
+    buildDrums();
+
+
+    /* ══════════════════════════════
+       INFINITE COUPONS
+       IntersectionObserver watches a sentinel at the bottom;
+       whenever it enters view, we append more coupons.
+    ══════════════════════════════ */
+    const COUPON_TEXTS = [
+      { title: 'Бесплатные объятия', desc: 'Действителен в любое время суток.\nМожно предъявить молча.' },
+      { title: 'Один глупый вечер', desc: 'Фильм на выбор Насти.\nПопкорн включён.' },
+      { title: 'Я слушаю', desc: 'Без советов, без телефона.\nПросто рядом и слушаю.' },
+      { title: 'Поддержка 24/7', desc: 'Напиши в любое время —\nотвечу обязательно.' },
+      { title: '∞ улыбок', desc: 'Буду смешить пока\nне улыбнёшься.' },
+      { title: 'Один тёплый день', desc: 'Куда захочешь — туда едем.\nБез обсуждений.' },
+      { title: 'Я рядом', desc: 'Даже на расстоянии.\nДаже когда тяжело.' },
+      { title: 'Ты особенная', desc: 'Этот купон не истекает.\nНикогда.' },
+      { title: 'Люблю тебя', desc: 'Осознанно. Без «но».\nБез сомнений.' },
+      { title: 'Один тихий вечер', desc: 'Просто вместе, ничего лишнего.\nЭтого уже достаточно.' },
+      { title: 'Всё будет хорошо', desc: 'Обещаю быть рядом\nв любой непростой момент.' },
+      { title: 'Безвозмездная нежность', desc: 'Предъявить по требованию.\nСрок: бесконечность.' },
+    ];
+
+    let couponInited = false;
+    let couponCount = 0;
+    let couponObserver = null;
+
+    function initCoupons() {
+      if (couponInited) return;
+      couponInited = true;
+
+      const scroll = document.getElementById('couponsScroll');
+
+      // Append first batch
+      appendCoupons(scroll, 4);
+
+      // Sentinel div at bottom — when visible, load more
+      const sentinel = document.createElement('div');
+      sentinel.style.cssText = 'height:1px;width:100%;';
+      scroll.appendChild(sentinel);
+
+      couponObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) appendCoupons(scroll, 3, sentinel);
+      }, { root: document.getElementById('page4'), threshold: 0.1 });
+
+      couponObserver.observe(sentinel);
+    }
+
+    function appendCoupons(container, count, before) {
+      for (let i = 0; i < count; i++) {
+        const data = COUPON_TEXTS[couponCount % COUPON_TEXTS.length];
+        couponCount++;
+
+        const num = String(couponCount).padStart(4, '0');
+        const wrap = document.createElement('div');
+        wrap.className = 'coupon-wrap';
+
+        wrap.innerHTML = `
+      <div class="coupon">
+        <div class="coupon-inner">
+          <div class="coupon-logo">
+            <div class="coupon-logo-text">Love Market</div>
+            <div class="coupon-logo-sub">Купон на любовь</div>
+          </div>
+          <hr class="c-divider"/>
+          <div class="c-meta"><span>Для: Насти</span><span>№ ${num}</span></div>
+          <div class="c-body">
+            <div class="c-text">
+              <div class="c-title">${data.title}</div>
+              <div class="c-desc">${data.desc.replace(/\n/g, '<br/>')}</div>
+            </div>
+          </div>
+          <hr class="c-divider"/>
+          <div class="c-footer">
+            <div class="c-hearts">💕 💖 💗</div>
+            <div style="margin-top:2px">Срок действия: навсегда</div>
+          </div>
+        </div>
+      </div>
+      <div class="coupon-tear"></div>`;
+
+        if (before) container.insertBefore(wrap, before);
+        else container.appendChild(wrap);
+      }
+    }
+
+    /* ══════════════════════════════
+       TIMER
+    ══════════════════════════════ */
+    let timerStarted = false;
+    function startTimer() {
+      if (timerStarted) return; timerStarted = true;
+      const start = new Date('2025-09-27T00:00:00');
+      const main = document.getElementById('timerMain');
+      function tick() {
+        let diff = Math.floor((new Date() - start) / 1000);
+        if (diff < 0) diff = 0;
+        const days = Math.floor(diff / 86400); diff -= days * 86400;
+        const hrs = Math.floor(diff / 3600); diff -= hrs * 3600;
+        const mins = Math.floor(diff / 60); diff -= mins * 60;
+        main.textContent = `${days} дн ${hrs} ч ${mins} мин ${diff} сек`;
+      }
+      tick(); setInterval(tick, 1000);
+    }
+
+    /* ══════════════════════════════
+       PHOTO GALLERY — simple & reliable
+       No pointer swapping. Two fixed slots: A and B.
+       We always know which is showing. No preload confusion.
+    ══════════════════════════════ */
+    const PHOTOS = [
+      'photo_2026-02-14_22-44-49.jpg',
+      'photo_2026-02-20_11-34-06.jpg',
+      'photo_2026-02-20_11-34-08.jpg',
+      'photo_2026-02-20_11-34-10.jpg',
+      'photo_2026-02-20_11-34-12.jpg',
+      'photo_2026-02-20_11-34-13.jpg',
+      'photo_2026-02-20_11-36-08.jpg',
+      'photo_2026-02-21_16-12-38.jpg',
+    ];
+
+    let gIndex = 0;
+    let gInited = false;
+    let gBusy = false;
+    // Which slot is currently "front" — toggles between 'A' and 'B'
+    let gSlot = 'A';
+    let gA, gB;
+
+    function initGallery() {
+      if (gInited) return;
+      gInited = true;
+
+      gA = document.getElementById('gImgBehind'); // reuse existing elements
+      gB = document.getElementById('gImgFront');
+
+      // Slot A starts as front with photo 0
+      gA.src = PHOTOS[0];
+      gA.className = 'gallery-img front';
+      gB.className = 'gallery-img behind';
+      gB.src = '';
+      gSlot = 'A';
+
+      // Build dots
+      const dotsEl = document.getElementById('gDots');
+      PHOTOS.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'gdot' + (i === 0 ? ' active' : '');
+        d.onclick = () => galleryGoto(i);
+        dotsEl.appendChild(d);
+      });
+
+      updateGalleryUI();
+
+      // Swipe
+      const viewer = document.getElementById('galleryViewer');
+      let tx = null;
+      viewer.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      viewer.addEventListener('touchend', e => {
+        if (tx === null) return;
+        const dx = tx - e.changedTouches[0].clientX;
+        if (Math.abs(dx) > 30) galleryStep(dx > 0 ? 1 : -1);
+        tx = null;
+      }, { passive: true });
+    }
+
+    function galleryStep(dir) { galleryGoto(gIndex + dir); }
+
+    function galleryGoto(next) {
+      if (next === gIndex || next < 0 || next >= PHOTOS.length || gBusy) return;
+      gBusy = true;
+
+      // The slot that is currently hidden becomes the loader
+      const incoming = gSlot === 'A' ? gB : gA;
+      const outgoing = gSlot === 'A' ? gA : gB;
+
+      // Clear any stale onload
+      incoming.onload = null;
+      incoming.onerror = null;
+
+      function doSwap() {
+        incoming.onload = null;
+        incoming.onerror = null;
+
+        // Swap classes
+        incoming.className = 'gallery-img front';
+        outgoing.className = 'gallery-img behind';
+
+        // Update which slot is front
+        gSlot = gSlot === 'A' ? 'B' : 'A';
+        gIndex = next;
+        updateGalleryUI();
+
+        // Allow next interaction after CSS transition (~350ms)
+        setTimeout(() => { gBusy = false; }, 370);
+      }
+
+      // Load the new photo into the hidden slot
+      if (incoming.src.endsWith(PHOTOS[next]) && incoming.complete && incoming.naturalWidth > 0) {
+        // Already loaded (e.g. was preloaded) — swap immediately
+        doSwap();
+      } else {
+        incoming.onload = doSwap;
+        incoming.onerror = () => { incoming.onload = null; gBusy = false; };
+        incoming.src = PHOTOS[next];
+      }
+    }
+
+    function updateGalleryUI() {
+      document.getElementById('gCounter').textContent = `${gIndex + 1} / ${PHOTOS.length}`;
+      document.getElementById('gPrev').disabled = gIndex === 0;
+      document.getElementById('gNext').disabled = gIndex === PHOTOS.length - 1;
+      document.querySelectorAll('.gdot').forEach((d, i) => d.classList.toggle('active', i === gIndex));
+    }
+  </script>
+</body>
+
+</html>
